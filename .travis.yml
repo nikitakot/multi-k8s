@@ -20,3 +20,17 @@ after_success:
   - docker push nikitakot/multi-nginx
   - docker push nikitakot/multi-server
   - docker push nikitakot/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: eu-central-1
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-eu-central-1-736201175857
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id:
+    secure: $AWS_ACCRSS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
