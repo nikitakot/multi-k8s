@@ -1,0 +1,20 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: nikitakot-com-tls
+spec:
+  secretName: nikitakot-com
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: nikitakot.com
+  dnsNames:
+    - nikitakot.com
+    - www.nikitakot.com
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - nikitakot.com
+          - www.nikitakot.com
